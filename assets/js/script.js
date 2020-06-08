@@ -10,6 +10,8 @@ var taskFormHandler = function(event) {
         alert("You need to fill out the task form!");
         return false;
     }
+
+    formEl.reset(); 
     
     // package up data as an object
     var taskDataObj = {
@@ -20,7 +22,7 @@ var taskFormHandler = function(event) {
     // send it as an argument to createTaskEl
     createTaskEl(taskDataObj);
 
-    formEl.reset();
+
 }
 
 var createTaskEl = function(taskDataObj) {
