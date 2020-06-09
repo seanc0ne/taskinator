@@ -1,5 +1,6 @@
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
+var taskTypeDropdown = document.querySelector ("#task-type-issue");
 
 var taskFormHandler = function(event) {
     event.preventDefault();
@@ -12,7 +13,8 @@ var taskFormHandler = function(event) {
     }
 
     formEl.reset(); 
-    
+    taskTypeDropdown.selectedIndex = "0";
+
     // package up data as an object
     var taskDataObj = {
       name: taskNameInput,
