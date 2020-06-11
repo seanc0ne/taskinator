@@ -5,6 +5,7 @@ var taskTypeDropdown = document.querySelector ("#task-type-issue");
 var pageContentEl = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
+var tasks = [];
 
 var taskFormHandler = function(event) {
     event.preventDefault();
@@ -24,9 +25,10 @@ var taskFormHandler = function(event) {
 
     // package up data as an object
     var taskDataObj = {
-      name: taskNameInput,
-      type: taskTypeInput
-    };
+        name: taskNameInput,
+        type: taskTypeInput,
+        status: "to do"
+    }
   
     // PUT THIS BELOW `var isEdit = ...` in `taskFormHandler()`
 
@@ -39,7 +41,8 @@ var taskFormHandler = function(event) {
     else {
         var taskDataObj = {
         name: taskNameInput,
-        type: taskTypeInput
+        type: taskTypeInput,
+        status: "to do"
     };
   
     createTaskEl(taskDataObj);
@@ -71,6 +74,13 @@ var createTaskEl = function(taskDataObj) {
     taskInfoEl.className = "task-info";
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
     listItemEl.appendChild(taskInfoEl);
+
+    console.log(taskDataObj);
+    console.log(taskDataObj.status);
+
+    taskDataObj.id = taskIdCounter;
+
+    tasks.push(taskDataObj);
   
     var taskActionsEl = createTaskActions(taskIdCounter);
     listItemEl.appendChild(taskActionsEl);
@@ -79,6 +89,7 @@ var createTaskEl = function(taskDataObj) {
   
     // increase task counter for next unique id
     taskIdCounter++;
+
 };
 
 var createTaskActions = function(taskId) {
